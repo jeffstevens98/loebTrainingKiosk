@@ -2,7 +2,10 @@ import time #used for sleeping
 from win32 import win32api #used for getting user input
 from selenium import webdriver #used for controlling browser
 from selenium.webdriver.chrome.options import Options #used for adding kiosk mode to browser
+from plyer import notification
 
+TIMEOUT = 30
+TIMEOUT_WARNING = 20
 
 chrome_options = Options()
 #chrome_options.add_argument("--kiosk")
@@ -33,7 +36,7 @@ while(True):
         lastInput = win32api.GetLastInputInfo(); #Changes only when a keyboard or mouse event occurs
         time.sleep(1)
         inactiveTime += 1
-        if (inactiveTime >= 900): #should be 900 seconds for triggering a timeout on 15 minutes of inactivity
+        if (inactiveTime >= TIMEOUT): #should be 900 seconds for triggering a timeout on 15 minutes of inactivity
             #Close the webdriver
             driver.close()
             #Reinitialize the webdriver
@@ -47,5 +50,6 @@ while(True):
             inactiveTime = 0
             active = False
             break
-        
+        elif (inactiveTime == TIMEOUT_WARNING):
+            notification.notify(title = "Session timeout", message = F"The computer has detected inactivity and will reset the browser in {TIMEOUT - TIMEOUT_WARNING} seconds unless the keyboard or mouse receives input." , timeout=7)
         

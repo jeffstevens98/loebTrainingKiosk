@@ -6,7 +6,7 @@ home URL. This little project is being used to manage machines that employees us
 
 ------------   Contents   ------------
 1. Installing python
-2. Installing and configuring the selenium package
+2. Installing and configuring the dependencies
 3. Configuring chromedriver
 4. Configuring the script for your data directories
 --------------------------------------
@@ -23,8 +23,9 @@ Remember where you installed python! We will need that information in the next s
 
 
 
------------- 2. Installing and configuring the selenium package ------------
+------------ 2. Installing and configuring the dependencies ------------
 
+Selenium:
 This script uses a dependency called selenium to control a web browser. To install selenium, open
 the command prompt (found by typing cmd in the windows start menu) and enter the following command
 
@@ -41,6 +42,19 @@ In this folder you need to replace the service.py file with the one included in 
 Either copy it in and replace it, or drag it into the folder to replace it. What this will do 
 is it will slightly modify the source code of selenium to not show a detailed console window,
 which may prove to be confusing to employees working on the training kiosk.
+
+
+Plyer:
+In order to send notifications to users that a session timeout may occur soon, we need a package that 
+will allow python to send windows notifications. We're going to be using plyer for this. Simply run the
+following in the command line:
+
+pip install plyer
+
+One other adjustment you ought to make to get plyer's notifications to show up while windows is in full screen
+is to navigate to the "focus assist" setting in your computer's start menu. Turn both of the options labeled
+"when I'm playing a game" and "when I'm in fullscreen mode" off.
+
 
 
 
