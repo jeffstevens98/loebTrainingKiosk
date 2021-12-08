@@ -8,8 +8,15 @@ chrome_options = Options()
 #chrome_options.add_argument("--kiosk")
 chrome_options.add_argument("--start-fullscreen") #start in fullscreen
 chrome_options.add_experimental_option("excludeSwitches", ['enable-automation']) #removes the message "Chrome is being controlled by automated test software"
-chrome_options.add_argument(r"--user-data-dir=C:\Users\jsteve\AppData\Local\Google\Chrome\User Data") #e.g. C:\Users\jsteve\AppData\Local\Google\Chrome\User Data
+
+###############################################################################################################################################################
+########################## EDIT THESE TWO LINES BELOW BASED ON YOUR USER DATA FOLDER LOCATION AND THE PROFILE YOU WANT TO LAUNCH CHROME WITH ##################
+###############################################################################################################################################################
+chrome_options.add_argument(r"--user-data-dir=C:\Users\jsteve\AppData\Local\Google\Chrome\User Data") #e.g. C:\Users\You\AppData\Local\Google\Chrome\User Data
 chrome_options.add_argument(r'--profile-directory=Default') #e.g. Profile 3
+###############################################################################################################################################################
+###############################################################################################################################################################
+
 driver = webdriver.Chrome(options=chrome_options) #start the webdriver with the given options
 driver.get("http://intranet")
 inactiveTime = 0 #The amount of time the user has been inactive
