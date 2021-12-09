@@ -25,16 +25,39 @@ Remember where you installed python! We will need that information in the next s
 
 ------------ 2. Installing and configuring the dependencies ------------
 
-Selenium:
-This script uses a dependency called selenium to control a web browser. To install selenium, open
-the command prompt (found by typing cmd in the windows start menu) and enter the following command
+Pip:
+To install packages, we'll need pip. Pip is python's package installer and is a recursive acronym: Pip Installs Packages!
+Pip should have come with your python installation, but in order to use it in the command line, we will need to add it 
+to your path. To do this, go to the start menu and type "path" (no quotes). An option should come up that says 
+"Edit system environment variables". Click on it and a window should pop up.
 
-pip install selenium
+In this new window, click on environment variables in the bottom right hand corner and yet another window should come up.
 
-This will use the pip package installer to set up selenium in your python libs folder. 
+In this new, new window, look to find an option in the system variable list on the bottom half of the window labeled
+"path". Select it and then click edit.
 
-Now's the time to remember where you installed python. In the folder where you installed python, we
-need to navigate to where we just installed selenium. The path should look something like this:
+Click new to add another path to your set of path variables. A text input box should pop up where you should enter the following
+path:
+
+...\yourPythonFolder\Scripts
+
+Mine looked like this:
+C:\Users\Training\AppData\Local\Programs\Python\Python310\Scripts
+
+Then click ok to save it! You should have pip set up now. To get a pulse from pip, open a command line and enter pip -V to 
+see if it's there. If it is, it should give you the version of pip.
+
+
+Install dependencies:
+This repository comes with a handy little file called "installDependencies.bat" which runs a suite ofo commands in the 
+command prompt to get you all of the dependencies you need to run this kiosk script. Simply doubleclick on the 
+file to run it, and then you'll get some messages in the command prompt that will tell you about the installation.
+After you've verified all of the dependencies have been successfully installed, do the following to configure them:
+
+
+Selenium: 
+In the folder where you installed python, we need to navigate to where we just installed selenium. 
+The path should look something like this:
 
 ...\yourPythonFolder\Lib\site-packages\selenium\webdriver\common
 
@@ -45,13 +68,7 @@ which may prove to be confusing to employees working on the training kiosk.
 
 
 Plyer:
-In order to send notifications to users that a session timeout may occur soon, we need a package that 
-will allow python to send windows notifications. We're going to be using plyer for this. Simply run the
-following in the command line:
-
-pip install plyer
-
-One other adjustment you ought to make to get plyer's notifications to show up while windows is in full screen
+An adjustment you ought to make to get plyer's notifications to show up while windows is in full screen
 is to navigate to the "focus assist" setting in your computer's start menu. Turn both of the options labeled
 "when I'm playing a game" and "when I'm in fullscreen mode" off.
 
@@ -65,7 +82,8 @@ look in your Program Files or Program Files(x86) folders. The path to your Chrom
 
 C:\Program Files\Google\Chrome\Application
 
-Copy and paste the chromedriver.exe file from the repository into this folder.
+Copy and paste the chromedriver.exe file from the repository into this folder. Currently, this version of chromedriver.exe works with chrome 96. If chrome
+is updated, you may need to get a newer version of chromedriver.
 
 
 

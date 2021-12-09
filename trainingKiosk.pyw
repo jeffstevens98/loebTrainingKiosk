@@ -15,13 +15,13 @@ chrome_options.add_experimental_option("excludeSwitches", ['enable-automation'])
 ###############################################################################################################################################################
 ########################## EDIT THESE TWO LINES BELOW BASED ON YOUR USER DATA FOLDER LOCATION AND THE PROFILE YOU WANT TO LAUNCH CHROME WITH ##################
 ###############################################################################################################################################################
-chrome_options.add_argument(r"--user-data-dir=C:\Users\jsteve\AppData\Local\Google\Chrome\User Data") #e.g. C:\Users\You\AppData\Local\Google\Chrome\User Data
+chrome_options.add_argument(r"--user-data-dir=C:\Users\Training\AppData\Local\Google\Chrome\User Data") #e.g. C:\Users\You\AppData\Local\Google\Chrome\User Data
 chrome_options.add_argument(r'--profile-directory=Default') #e.g. Profile 3
 ###############################################################################################################################################################
 ###############################################################################################################################################################
 
 driver = webdriver.Chrome(options=chrome_options) #start the webdriver with the given options
-driver.get("http://intranet")
+driver.get("https://go.bluevolt.com/loeblearningcenter/s/login")
 inactiveTime = 0 #The amount of time the user has been inactive
 active = False #False if we have not received in input in the last 30 minutes. True if we have!
 
@@ -46,7 +46,7 @@ while(True):
             chrome_options.add_experimental_option("excludeSwitches", ['enable-automation'])
             driver = webdriver.Chrome(options=chrome_options)
             ###########################
-            driver.get("http://intranet")
+            driver.get("https://go.bluevolt.com/loeblearningcenter/s/login")
             inactiveTime = 0
             active = False
             break

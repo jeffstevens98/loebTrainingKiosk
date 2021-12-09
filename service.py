@@ -26,7 +26,7 @@ from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.common import utils
 
 #Added so that no window is created from webdriver
-from win32process import CREATE_NO_WINDOW
+CREATE_NO_WINDOW = 134217728
 
 
 _HAS_NATIVE_DEVNULL = True
