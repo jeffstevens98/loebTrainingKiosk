@@ -1,0 +1,1 @@
+TASKLIST | FINDSTR trainingKiosk || start cmd /k CALL "C:\Users\jsteve\OneDrive - Loeb Electric\Documents\GitHub\loebTrainingKiosk"
