@@ -1,1 +1,2 @@
-TASKLIST | FINDSTR trainingKiosk || start cmd /k CALL "C:\Users\jsteve\OneDrive - Loeb Electric\Documents\GitHub\loebTrainingKiosk"
+@ECHO OFF
+TASKLIST | FINDSTR python.exe || start cmd /k CALL "C:\Users\Training\Documents\GitHub\loebTrainingKiosk\trainingKiosk.bat"

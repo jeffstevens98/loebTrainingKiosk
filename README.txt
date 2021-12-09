@@ -9,6 +9,7 @@ home URL. This little project is being used to manage machines that employees us
 2. Installing and configuring the dependencies
 3. Configuring chromedriver
 4. Configuring the script for your data directories
+5. Ready to go (other adjustments you can make)
 --------------------------------------
 
 
@@ -17,7 +18,8 @@ home URL. This little project is being used to manage machines that employees us
 
 This script runs in python, so you will need to install python on your machine in order for it to work.
 The repository comes with an installer for python 3.10, as of 12/8/21. Launch this python installer and follow
-the instructions in the wizard to get python installed.
+the instructions in the wizard to get python installed. Where prompted in the wizard, disable the path length
+limit.
 
 Remember where you installed python! We will need that information in the next step.
 
@@ -32,24 +34,28 @@ to your path. To do this, go to the start menu and type "path" (no quotes). An o
 "Edit system environment variables". Click on it and a window should pop up.
 
 In this new window, click on environment variables in the bottom right hand corner and yet another window should come up.
-
 In this new, new window, look to find an option in the system variable list on the bottom half of the window labeled
-"path". Select it and then click edit.
-
-Click new to add another path to your set of path variables. A text input box should pop up where you should enter the following
-path:
+"path". Select it and then click edit. Click new to add another path to your set of path variables. A text input box should 
+pop up where you should enter the following path:
 
 ...\yourPythonFolder\Scripts
 
 Mine looked like this:
 C:\Users\Training\AppData\Local\Programs\Python\Python310\Scripts
 
+While we're here let's add python to our path:
+
+...\yourPythonFolder
+
+This is just so that the commandline knows what we're asking for when we ask to execute python code from it.
+
 Then click ok to save it! You should have pip set up now. To get a pulse from pip, open a command line and enter pip -V to 
-see if it's there. If it is, it should give you the version of pip.
+see if it's there. If it is, it should give you the version of pip. You may have to restart your computer at this point for
+the environment variable changes to take effect.
 
 
 Install dependencies:
-This repository comes with a handy little file called "installDependencies.bat" which runs a suite ofo commands in the 
+This repository comes with a handy little file called "installDependencies.bat" which runs a suite of commands in the 
 command prompt to get you all of the dependencies you need to run this kiosk script. Simply doubleclick on the 
 file to run it, and then you'll get some messages in the command prompt that will tell you about the installation.
 After you've verified all of the dependencies have been successfully installed, do the following to configure them:
@@ -92,13 +98,10 @@ is updated, you may need to get a newer version of chromedriver.
 Right click on the trainingKiosk.pyw and open it with your favorite text editor (or IDLE3 if you installed that with python in step 1). 
 
 You should see early on in the file something that looks like this:
-###############################################################################################################################################################
-########################## EDIT THESE TWO LINES BELOW BASED ON YOUR USER DATA FOLDER LOCATION AND THE PROFILE YOU WANT TO LAUNCH CHROME WITH ##################
-###############################################################################################################################################################
+
 chrome_options.add_argument(r"--user-data-dir=C:\Users\You\AppData\Local\Google\Chrome\User Data")
 chrome_options.add_argument(r'--profile-directory=Default') #e.g. Profile 3
-###############################################################################################################################################################
-###############################################################################################################################################################
+
 
 Alter the code above to assign the "--user-data-dir" to the location of your User Data folder. For most people, all that would be is replacing the "You"
 in the path with the name of your windows user account.
@@ -112,7 +115,10 @@ Additionally, you can alter the line below that to assign "--profile-directory" 
 At this point, you should be ready to go! Execute the trainingKiosk.bat file by double clicking it and you should have your kiosk that tracks user input
 and issues session timeouts working. If you experience any issues, please leave an issue on the github repo webpage. 
 
-One last bit of advice is that if you want this script to run at start up on your windows PC, do the following:
+
+Some other configurations you may want to make:
+
+If you want this script to run at start up on your windows PC, do the following:
 
 1. Go to the start menu and search for "task scheduler". Find the task scheduler in the search results and click it to open it.
 2. Click "create basic task"
@@ -121,3 +127,13 @@ One last bit of advice is that if you want this script to run at start up on you
 5. Click "Start a program", and then click "Next"
 6. Type "trainingKiosk.bat" (no quotes) into the program to execute field, and then copy and paste the path to the repo in the "start in" field. Click "Next".
 7. Finally, click finish. You should have the kiosk start the next time you log onto your PC!
+
+If you want windows to check to see if this script is running, and if it isn't to start it up:
+
+1. Go to the start menu and bring up the task scheduler again as described above.
+2. Click "create task"
+3. In the new window that opened, give your task a good name like "RelaunchKiosk" and click "Next"
+4. Make the action of this new task to be to start a program, and type "relaunchKiosk-no_console.bat" (no quotes). Additionally, 
+you should enter the directory of where that file is contained in the "start in" box.
+5. Set the task to recur daily, every 5 minutes.
+6. Click okay to save the task.
