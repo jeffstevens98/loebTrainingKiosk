@@ -128,7 +128,11 @@ If you want windows to check to see if this script is running, and if it isn't t
 1. Go to the start menu and bring up the task scheduler again as described above.
 2. Click "create task"
 3. In the new window that opened, give your task a good name like "RelaunchKiosk" and click "Next"
-4. Make the action of this new task to be to start a program, and type "relaunchKiosk-no_console.bat" (no quotes). Additionally, 
-you should enter the directory of where that file is contained in the "start in" box.
+4. Make the action of this new task to be to start a program, and type "cmd" (no quotes). Additionally, 
+you should enter the directory of where that file is contained in the "start in" box. Now, here's the important one:
+Enter the following into the arguments:
+/C start "" /MIN C:\...\loebTrainingKiosk\relaunchKiosk.bat
+Where the ... is the path to the kiosk repo. This will start the relaunchKiosk.bat as minimized so it won't be annoying and pop up in front of you
+every five minutes.
 5. Set the task to recur daily, every 5 minutes.
 6. Click okay to save the task.

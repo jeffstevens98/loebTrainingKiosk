@@ -54,6 +54,8 @@ def getHOME_ReloadOnError(driver):
 This is where everything happens!
 '''
 def main():
+    bannerTextFile = open("banner.txt",'r')
+    print(bannerTextFile.read())
 
     chrome_options = Options()
     chrome_options.add_argument("--kiosk") #Start in kiosk mode
@@ -91,7 +93,7 @@ def main():
             ### Restart browser when inactive time has reached the timeout time ###
             if (inactiveTime >= TIMEOUT):
                 #Close the webdriver
-                driver.close()
+                driver.quit()
                 #Reinitialize the webdriver
                 driver = webdriver.Chrome(options=chrome_options)
                 getHOME_ReloadOnError(driver)
