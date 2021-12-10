@@ -4,6 +4,12 @@ This is a python script and small batch file that work together to open google c
 and keeps track of user input. Whenever no input is received for a given period of time, the session times out, and the browser is restarted to its 
 home URL. This little project is being used to manage machines that employees use to watch training videos.
 
+Features:
+-Launch chrome in kiosk mode
+-Session timeout from no user activity
+-Batch files and scheduled tasks which keep this script running
+-If a new chrome window is opened that the script isn't controlling, the script exits the window and opens its own chrome window
+
 ------------   Contents   ------------
 1. Installing python
 2. Installing and configuring the dependencies
