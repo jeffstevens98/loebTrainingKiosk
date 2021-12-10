@@ -14,8 +14,8 @@ from selenium.webdriver.chrome.options import Options #used for adding kiosk mod
 from selenium.webdriver.common.by import By
 from plyer import notification
 
-TIMEOUT = 15 #The amount of time in seconds of inactivity that a session timeout will occur 
-TIMEOUT_WARNING = 10 #The amount of time in seconds of inactivity that the user will be sent a message warning them of a session timeout
+TIMEOUT = 900 #The amount of time in seconds of inactivity that a session timeout will occur 
+TIMEOUT_WARNING = 870 #The amount of time in seconds of inactivity that the user will be sent a message warning them of a session timeout
 HOME = "https://go.bluevolt.com/loeblearningcenter/s/login" #Where to redirect after session timeout(replace as necessary for your project)
 
 
