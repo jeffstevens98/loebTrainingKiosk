@@ -29,7 +29,7 @@ If we don't find an error, return false.
 @return a boolean value; true if error, false if no error
 '''
 def reachedErrorPage(driver):
-    if (driver.title == "Error"):
+    if (driver.title != "Loeb Learning Center"):
         return True
     else:
         return False
@@ -39,15 +39,35 @@ def reachedErrorPage(driver):
 Uses the selenium webdriver to get the homepage of the kiosk.
 If we reach an error page, we refresh the page until we don't get an error
 
-@driver The webdriver object from selnium
+@driver The webdriver object from selenium
 '''
 def getHOME_ReloadOnError(driver):
+    attempts = 0
     while(True):
         driver.get(HOME)
         if(reachedErrorPage(driver)):
+            attempts += 1
+            if (attempts > 10):
+                print("There's an error and we can't get the kiosk homepage!")
+                break
             continue
         else:
             break
+
+
+'''
+Detects if the browser has been closed
+
+@returns true if the browser has been closed and false otherwise
+'''
+def browserClosed(driver):
+    log = driver.get_log("driver")
+    if(len(log) > 0):
+        if(log[0]["message"].find('disconnected')):
+            return True
+        else:
+            return False
+    
 
 
 '''
@@ -86,10 +106,18 @@ def main():
             #Active state
             lastInput = win32api.GetLastInputInfo(); #Changes only when a keyboard or mouse event occurs
             time.sleep(1)
-            if(lastInput == win32api.GetLastInputInfo()): #If we don't detect any keyboard or mouse input, then we increase the inactive time, if we do, we reset it
+            #If we don't detect any keyboard or mouse input, then we increase the inactive time, if we do, we reset it
+            if(lastInput == win32api.GetLastInputInfo()):
                 inactiveTime += 1
             else:
                 inactiveTime = 0
+            #If we close the browser while a user is active, reopen it
+            if(browserClosed(driver)):
+                print("A user closed the browser: Initiating automatic restart")
+                driver.quit()
+                driver = webdriver.Chrome(options=chrome_options)
+                getHOME_ReloadOnError(driver)
+                print("Restart successful")
             ### Restart browser when inactive time has reached the timeout time ###
             if (inactiveTime >= TIMEOUT):
                 #Close the webdriver
