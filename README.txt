@@ -53,13 +53,11 @@ Then click ok to save it! You should have pip set up now. To get a pulse from pi
 see if it's there. If it is, it should give you the version of pip. You may have to restart your computer at this point for
 the environment variable changes to take effect.
 
-
 Install dependencies:
 This repository comes with a handy little file called "installDependencies.bat" which runs a suite of commands in the 
 command prompt to get you all of the dependencies you need to run this kiosk script. Simply doubleclick on the 
 file to run it, and then you'll get some messages in the command prompt that will tell you about the installation.
 After you've verified all of the dependencies have been successfully installed, do the following to configure them:
-
 
 Selenium: 
 In the folder where you installed python, we need to navigate to where we just installed selenium. 
@@ -71,7 +69,6 @@ In this folder you need to replace the service.py file with the one included in 
 Either copy it in and replace it, or drag it into the folder to replace it. What this will do 
 is it will slightly modify the source code of selenium to not show a detailed console window,
 which may prove to be confusing to employees working on the training kiosk.
-
 
 Plyer:
 An adjustment you ought to make to get plyer's notifications to show up while windows is in full screen
@@ -102,7 +99,6 @@ You should see early on in the file something that looks like this:
 chrome_options.add_argument(r"--user-data-dir=C:\Users\You\AppData\Local\Google\Chrome\User Data")
 chrome_options.add_argument(r'--profile-directory=Default') #e.g. Profile 3
 
-
 Alter the code above to assign the "--user-data-dir" to the location of your User Data folder. For most people, all that would be is replacing the "You"
 in the path with the name of your windows user account.
 
@@ -114,7 +110,6 @@ Additionally, you can alter the line below that to assign "--profile-directory" 
 
 At this point, you should be ready to go! Execute the trainingKiosk.bat file by double clicking it and you should have your kiosk that tracks user input
 and issues session timeouts working. If you experience any issues, please leave an issue on the github repo webpage. 
-
 
 Some other configurations you may want to make:
 
