@@ -15,10 +15,10 @@ from selenium.webdriver.chrome.options import Options #used for adding kiosk mod
 from selenium.webdriver.common.by import By
 from plyer import notification
 
-TIMEOUT = 60 #The amount of time in seconds of inactivity that a session timeout will occur 
-TIMEOUT_WARNING = 45 #The amount of time in seconds of inactivity that the user will be sent a message warning them of a session timeout
-HOME = "https://go.bluevolt.com/loeblearningcenter/s/login" #Where to redirect after session timeout(replace as necessary for your project)
-
+TIMEOUT = 900 #The amount of time in seconds of inactivity that a session timeout will occur 
+TIMEOUT_WARNING = 870 #The amount of time in seconds of inactivity that the user will be sent a message warning them of a session timeout
+LOEB_LEARNING = "https://go.bluevolt.com/loeblearningcenter/s/login" #URL to redirect to in tab 1
+ADP = "https://online.adp.com/signin/v1/?APPID=WFNPortal&productId=80e309c3-7085-bae1-e053-3505430b5495&returnURL=https://workforcenow.adp.com/&callingAppId=WFN" #URL to redirect to in tab 2
 
 
 
@@ -62,10 +62,16 @@ If we reach an error page, we refresh the page until we don't get an error
 def getHOME_ReloadOnError(driver):
     attempts = 0
     while(True):
-        driver.get(HOME)
+        driver.get(ADP)
+        driver.execute_script("window.open('" + LOEB_LEARNING + "')")
+        ADP_windowHandle = driver.current_window_handle
+        for handle in driver.window_handles:
+            if handle != ADP_windowHandle:
+                driver.switch_to.window(handle)
+        time.sleep(1)
         if(reachedErrorPage(driver)):
             attempts += 1
-            if (attempts > 10):
+            if (attempts > 4):
                 print("There's an error and we can't get the kiosk homepage!")
                 break
             continue
@@ -101,7 +107,7 @@ def main():
     chrome_options.add_experimental_option("excludeSwitches", ['enable-automation']) #removes the message "Chrome is being controlled by automated test software"
 
     ########################## EDIT THESE TWO LINES BELOW BASED ON YOUR USER DATA FOLDER LOCATION AND THE PROFILE YOU WANT TO LAUNCH CHROME WITH ##################
-    chrome_options.add_argument(r"--user-data-dir=C:\Users\Training\AppData\Local\Google\Chrome\User Data") #e.g. C:\Users\You\AppData\Local\Google\Chrome\User Data
+    chrome_options.add_argument(r"--user-data-dir=C:\Users\training\AppData\Local\Google\Chrome\User Data") #e.g. C:\Users\You\AppData\Local\Google\Chrome\User Data
     chrome_options.add_argument(r'--profile-directory=Default') #e.g. Profile 3
     ###############################################################################################################################################################
 

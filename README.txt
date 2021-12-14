@@ -15,7 +15,7 @@ Features:
 2. Installing and configuring the dependencies
 3. Configuring chromedriver
 4. Configuring the script for your data directories
-5. Ready to go (other adjustments you can make)
+5. Finishing touches (other adjustments you can make)
 --------------------------------------
 
 
@@ -112,14 +112,14 @@ Additionally, you can alter the line below that to assign "--profile-directory" 
 
 
 
------------- 5. Ready to go! ------------
+------------ 5. Finishing touches ------------
 
-At this point, you should be ready to go! Execute the trainingKiosk.bat file by double clicking it and you should have your kiosk that tracks user input
+At this point, you should be fully functional! Execute the trainingKiosk.bat file by double clicking it and you should have your kiosk that tracks user input
 and issues session timeouts working. If you experience any issues, please leave an issue on the github repo webpage. 
 
 Some other configurations you may want to make:
 
-If you want this script to run at start up on your windows PC, do the following:
+*If you want this script to run at start up on your windows PC, do the following:
 
 1. Go to the start menu and search for "task scheduler". Find the task scheduler in the search results and click it to open it.
 2. Click "create basic task"
@@ -129,7 +129,7 @@ If you want this script to run at start up on your windows PC, do the following:
 6. Type "trainingKiosk.bat" (no quotes) into the program to execute field, and then copy and paste the path to the repo in the "start in" field. Click "Next".
 7. Finally, click finish. You should have the kiosk start the next time you log onto your PC!
 
-If you want windows to check to see if this script is running, and if it isn't to start it up:
+*If you want windows to check to see if this script is running, and if it isn't to start it up:
 
 1. Go to the start menu and bring up the task scheduler again as described above.
 2. Click "create task"
@@ -142,3 +142,7 @@ Where the ... is the path to the kiosk repo. This will start the relaunchKiosk.b
 every five minutes.
 5. Set the task to recur daily, every 5 minutes.
 6. Click okay to save the task.
+
+*If you would like the see thee tabs in chrome's kiosk mode, download the following chrome extension to the profile
+that you'll be using this kiosk software with:
+https://chrome.google.com/webstore/detail/fullscreen-tab-bar/hlackdnjlfblchoenkpcbbophehmeijb?hl=en-US
