@@ -135,12 +135,12 @@ Some other configurations you may want to make:
 2. Click "create task"
 3. In the new window that opened, give your task a good name like "RelaunchKiosk" and click "Next"
 4. Make the action of this new task to be to start a program, and type "cmd" (no quotes). Additionally, 
-you should enter the directory of where that file is contained in the "start in" box. Now, here's the important one:
+you should enter the directory of where the relauncKiosk.bat (the path to the repo) is contained in the "start in" box. Now, here's the important one:
 Enter the following into the arguments:
 /C start "" /MIN C:\...\loebTrainingKiosk\relaunchKiosk.bat
 Where the ... is the path to the kiosk repo. This will start the relaunchKiosk.bat as minimized so it won't be annoying and pop up in front of you
 every five minutes.
-5. Set the task to recur daily, every 5 minutes.
+5. Set the task to recur daily, every 5 minutes. Make sure this triggers at a time in the near future so you can start seeing the trigger working.
 6. Click okay to save the task.
 
 *If you would like the see thee tabs in chrome's kiosk mode, download the following chrome extension to the profile
