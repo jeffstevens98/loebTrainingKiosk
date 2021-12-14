@@ -6,6 +6,7 @@ then a session timeout occurs, where the chrome browser is restarted.
 """
 
 import os #used for killing chrome tasks
+#import psutil #used for checking to see if chrome is running
 import time #used for sleeping
 #import requests #used to check for error landing page
 from win32 import win32api #used for getting user input
@@ -14,9 +15,26 @@ from selenium.webdriver.chrome.options import Options #used for adding kiosk mod
 from selenium.webdriver.common.by import By
 from plyer import notification
 
-TIMEOUT = 900 #The amount of time in seconds of inactivity that a session timeout will occur 
-TIMEOUT_WARNING = 870 #The amount of time in seconds of inactivity that the user will be sent a message warning them of a session timeout
+TIMEOUT = 60 #The amount of time in seconds of inactivity that a session timeout will occur 
+TIMEOUT_WARNING = 45 #The amount of time in seconds of inactivity that the user will be sent a message warning them of a session timeout
 HOME = "https://go.bluevolt.com/loeblearningcenter/s/login" #Where to redirect after session timeout(replace as necessary for your project)
+
+
+
+
+'''
+CURRENTLY COMMENTED OUT: Requires Visual C++14 build tools and I'm not sure I want to bloat the
+installation of this training kiosk tool anymore
+
+Checks to see if a process is running by its executable name. We use 'chrome.exe' by default.
+Taken from: https://stackoverflow.com/questions/63105717/how-do-i-run-a-test-to-check-if-google-chrome-is-running-python
+def process_is_running_by_exename(exename):
+    for proc in psutil.process_iter(['pid', 'name']):
+        # This will check if there exists any process running with executable name
+        if proc.info['name'] == exename:
+            return True
+    return False
+'''
 
 
 '''
@@ -87,8 +105,9 @@ def main():
     chrome_options.add_argument(r'--profile-directory=Default') #e.g. Profile 3
     ###############################################################################################################################################################
 
-
-    os.system("taskkill /im chrome.exe /f") #Kill all chrome windows that aren't attached to the kiosk on startup of this script
+    #Kill all chrome windows that aren't attached to the kiosk on startup of this script
+    os.system("taskkill /im chrome.exe /f")
+    
     driver = webdriver.Chrome(options=chrome_options) #start the webdriver with the given options
     getHOME_ReloadOnError(driver)#Go to the loeb training homepage
     inactiveTime = 0 #The amount of time the user has been inactive
