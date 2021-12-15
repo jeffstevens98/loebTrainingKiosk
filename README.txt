@@ -24,8 +24,8 @@ Features:
 
 This script runs in python, so you will need to install python on your machine in order for it to work.
 The repository comes with an installer for python 3.10, as of 12/8/21. Launch this python installer and follow
-the instructions in the wizard to get python installed. Where prompted in the wizard, disable the path length
-limit.
+the instructions in the wizard to get python installed with recommended settings. Where prompted in the wizard, 
+disable the path length limit.
 
 Remember where you installed python! We will need that information in the next step.
 
@@ -117,7 +117,7 @@ Additionally, you can alter the line below that to assign "--profile-directory" 
 At this point, you should be fully functional! Execute the trainingKiosk.bat file by double clicking it and you should have your kiosk that tracks user input
 and issues session timeouts working. If you experience any issues, please leave an issue on the github repo webpage. 
 
-Some other configurations you may want to make:
+Some other configurations you may want to make (we want these for the loeb electric training kiosks):
 
 *If you want this script to run at start up on your windows PC, do the following:
 
@@ -143,6 +143,6 @@ every five minutes.
 5. Set the task to recur daily, every 5 minutes. Make sure this triggers at a time in the near future so you can start seeing the trigger working.
 6. Click okay to save the task.
 
-*If you would like the see thee tabs in chrome's kiosk mode, download the following chrome extension to the profile
+*If you would like the see the tabs in chrome's kiosk mode, download the following chrome extension to the profile
 that you'll be using this kiosk software with:
 https://chrome.google.com/webstore/detail/fullscreen-tab-bar/hlackdnjlfblchoenkpcbbophehmeijb?hl=en-US
