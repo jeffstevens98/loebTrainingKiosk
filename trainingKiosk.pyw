@@ -19,6 +19,7 @@ TIMEOUT = 900 #The amount of time in seconds of inactivity that a session timeou
 TIMEOUT_WARNING = 870 #The amount of time in seconds of inactivity that the user will be sent a message warning them of a session timeout
 LOEB_LEARNING = "https://go.bluevolt.com/loeblearningcenter/s/login" #URL to redirect to in tab 1
 ADP = "https://online.adp.com/signin/v1/?APPID=WFNPortal&productId=80e309c3-7085-bae1-e053-3505430b5495&returnURL=https://workforcenow.adp.com/&callingAppId=WFN" #URL to redirect to in tab 2
+HOME = LOEB_LEARNING
 
 
 
@@ -62,14 +63,17 @@ If we reach an error page, we refresh the page until we don't get an error
 def getHOME_ReloadOnError(driver):
     attempts = 0
     while(True):
-        driver.get(ADP)
+        driver.get(HOME)
+        '''
         driver.execute_script("window.open('" + LOEB_LEARNING + "')")
         ADP_windowHandle = driver.current_window_handle
         for handle in driver.window_handles:
             if handle != ADP_windowHandle:
                 driver.switch_to.window(handle)
         time.sleep(1)
-        if(reachedErrorPage(driver)):
+        '''
+        #If we're a loeb learning kiosk and we reach the error page, try again
+        if(reachedErrorPage(driver) && HOME == LOEB_LEARNING):
             attempts += 1
             if (attempts > 4):
                 print("There's an error and we can't get the kiosk homepage!")
